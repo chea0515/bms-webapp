@@ -2,9 +2,17 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>首页</title>
+		<script type="text/javascript" src="libs/require.min.js" data-main="config/main"></script>
 	</head>
 	<body>
 		
+		<div ui-view="top"></div>
+		
+		<div ui-view="left"></div>
+		
+		<div ui-view="main"></div>
+		
+		<!--<div ui-view="bottom"></div>-->
 	</body>
 </html>
