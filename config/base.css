@@ -1,0 +1,36 @@
+@charset "utf-8";
+body, html {
+}
+
+.cc-top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 60px;
+	width: 100%;
+	background-color: #555;
+	z-index: 1001;
+}
+
+.cc-menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 220px;
+	height: 100%;
+	background-color: #444;
+	color: #FFF;
+	z-index: 1000;
+}
+
+.cc-menu .m-list {
+	margin-top: 80px;
+}
+
+.cc-main {
+	position: absolute;
+	top: 60px;
+	left: 230px;
+	width: calc(100% - 230px);
+	height: calc(100% - 60px);
+}

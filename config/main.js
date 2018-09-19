@@ -3,8 +3,8 @@ require.config({
 	//baseUrl : '',
 	
 	'paths' : {
-		'base'       : 'base',
 		'app'        : 'app',
+		'base'       : 'base',
 		
 		'jquery'     : '../libs/jquery-3.3.1.min',
 		
@@ -17,8 +17,8 @@ require.config({
 		
 		'router'     : 'router',
 		
-		'layer'      : '../layui/layer/layer',
-		'laydate'    : '../layui/laydate/laydate'
+		'layer'      : '../libs/layui/layer/layer',
+		'laydate'    : '../libs/layui/laydate/laydate'
 		
 	},
 	
@@ -37,18 +37,20 @@ require.config({
 		'bootstrap' : ['css!../libs/bootstrap/css/bootstrap.min.css'],
 		
 		'uiRouter' : {
-			deps  : [ 'angular' ]
+			deps  : ['angular']
 		},
 		
 		'router' : ['uiRouter'],
 		
-		'app'      : ['jquery', 'base', 'bootstrap'],
+		'layer'    : ['css!../libs/layui/layer/theme/default/layer.css'],
+		'laydate'  : ['css!../libs/layui/laydate/theme/default/laydate.css'],
 		
-		'layer'    : ['css!../layui/layer/theme/default/layer.css'],
-		'laydate'  : ['css!../layui/laydate/theme/default/laydate.css']
-	},
+		'base'     : ['jquery', 'layer', 'laydate', 'bootstrap', 'css!base.css'],
+		
+		'app'      : ['base']
+	}
 	
-	'urlArgs' : 't=' + new Date().getTime()
+	//'urlArgs' : 't=' + new Date().getTime()
 	
 });
 

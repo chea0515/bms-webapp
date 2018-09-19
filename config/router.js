@@ -72,6 +72,15 @@ define(['app'], function(app) {
 			'resolve'     : {
 				'deps' : app.loadDepsSrc(basePath + 'pages/home/homeController.js')
 			}
+		})
+		//
+		.state('page.myinfo', {
+			'url'         : '/system/myinfo',
+			'templateUrl' : basePath + 'pages/system/myinfo.html',
+			'controller'  : 'myinfoController',
+			'resolve'     : {
+				'deps' : app.loadDepsSrc(basePath + 'pages/system/myinfoController.js')
+			}
 		});
 	}]);
 });

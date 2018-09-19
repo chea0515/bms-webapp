@@ -1,5 +1,20 @@
 define(['app'], function(app) {
-	app.register.controller('leftController',['$scope', '$http', function(scope, http) {
-		scope.test_left_01 = "left测试成功！";
+	app.register.controller('leftController',['$scope', '$state', function(scope, state) {
+		
+		// menu
+		scope.menus = null;
+		$.ccGet(basePath + 'config/menu.json', function(d) {
+			if(d && d.root) {
+				scope.menus = d.root;
+			}
+		});
+		
+		//
+		scope.menuGo = function(url) {
+			if(url) {
+				state.go(url);
+			}
+		}
+		
 	}]);
 });

@@ -7,17 +7,23 @@
 	</head>
 	<body>
 		
-		<div>
-			<div><a ui-sref="page.home">page-home</a></div>
+		<div class="container-fluid">
+			<!-- top -->
+			<div class="row">
+				<div class="cc-top" ui-view="top"></div>
+			</div>
 			
+			<!-- menu -->
+			<div class="row">
+				<div class="cc-menu" ui-view="left"></div>
+			</div>
+			
+			<!-- main -->
+			<div class="row">
+				<div class="cc-main" ui-view="main"></div>
+			</div>
+			<!--<div ui-view="bottom"></div>-->
+		
 		</div>
-		
-		<div ui-view="top"></div>
-		
-		<div ui-view="left"></div>
-		
-		<div ui-view="main"></div>
-		
-		<!--<div ui-view="bottom"></div>-->
 	</body>
 </html>

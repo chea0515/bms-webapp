@@ -1,0 +1,29 @@
+{"root" : [
+    {
+    	"title" : "日常生活",
+    	"icon" : "",
+    	"children" : [
+    		{
+    			"title" : "日常生活",
+    			"icon" : "",
+    			"url" : "aaa"
+    		}
+    	]
+    },
+    {
+    	"title" : "个人博客",
+    	"icon" : "",
+    	"children" : [
+    		{
+    			"title" : "文章",
+    			"icon" : "",
+    			"url" : "bbb"
+    		}
+    	]
+    },
+    {
+    	"title" : "系统设置",
+    	"icon" : "",
+    	"url" : "page.myinfo"
+    }
+]}
