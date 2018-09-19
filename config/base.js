@@ -98,3 +98,10 @@ jQuery.extend({
 	}
 	
 });
+
+/**
+ * jquery fn extends
+ */
+jQuery.fn.extend({
+	//
+});
