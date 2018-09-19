@@ -6,7 +6,11 @@ require.config({
 		'base'       : 'base',
 		'app'        : 'app',
 		
+		'jquery'     : '../libs/jquery-3.3.1.min',
+		
 		'angular'    : '../libs/angularjs/angular.min',
+		
+		'bootstrap'  : '../libs/bootstrap/js/bootstrap.min',
 		
 		// //unpkg.com/angular-ui-router@0.4.2/release/angular-ui-router.js
 		'uiRouter'  : '../libs/angular-ui-router',
@@ -15,6 +19,7 @@ require.config({
 		
 		'layer'      : '../layui/layer/layer',
 		'laydate'    : '../layui/laydate/laydate'
+		
 	},
 	
 	'map' : {
@@ -29,13 +34,15 @@ require.config({
 			exports : 'angular'
 		},
 		
+		'bootstrap' : ['css!../libs/bootstrap/css/bootstrap.min.css'],
+		
 		'uiRouter' : {
 			deps  : [ 'angular' ]
 		},
 		
 		'router' : ['uiRouter'],
 		
-		'app'      : ['base'],
+		'app'      : ['jquery', 'base', 'bootstrap'],
 		
 		'layer'    : ['css!../layui/layer/theme/default/layer.css'],
 		'laydate'  : ['css!../layui/laydate/theme/default/laydate.css']
