@@ -1,12 +1,19 @@
 {"root" : [
     {
-    	"title" : "日常生活",
+    	"title" : "日常",
     	"icon" : "glyphicon-shopping-cart",
     	"children" : [
     		{
-    			"title" : "日常生活",
-    			"icon" : "",
-    			"url" : "aaa"
+    			"title" : "笔记",
+    			"url" : ""
+    		},
+    		{
+    			"title" : "提醒",
+    			"url" : ""
+    		},
+    		{
+    			"title" : "理财",
+    			"url" : ""
     		}
     	]
     },
@@ -16,8 +23,23 @@
     	"children" : [
     		{
     			"title" : "文章",
-    			"icon" : "",
-    			"url" : "bbb",
+    			"children" : [
+    			    {
+    			    	"title" : "列表",
+    			        "url" : ""
+    			    },
+    			    {
+    			    	"title" : "分类",
+    			        "url" : ""
+    			    },
+    			    {
+    			    	"title" : "标签",
+    			        "url" : ""
+    			    }
+    			]
+    		},
+    		{
+    			"title" : "相册",
     			"children" : [
     			    {
     			    	"title" : "列表",
@@ -28,8 +50,17 @@
     	]
     },
     {
-    	"title" : "系统设置",
+    	"title" : "系统",
     	"icon" : "glyphicon-cog",
-    	"url" : "page.myinfo"
+    	"children" : [
+    		{
+    			"title" : "登录密码",
+    			"url" : "page.myinfo"
+    		},
+    		{
+    			"title" : "缓存",
+    			"url" : ""
+    		}
+    	]
     }
 ]}
