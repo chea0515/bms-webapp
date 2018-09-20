@@ -15,9 +15,11 @@
 				<a href="javascript:;" ng-click="menuGo(m.url)" class="m-items" style="padding-left: {{_index*20}}px;">
 					<i class="glyphicon" ng-class="m.icon"></i>
 					{{m.title}}
-					<i class="glyphicon" ng-class="{true:'glyphicon-chevron-right'}[m.children!=null]"></i>
+					<i ng-if="m.children!=null" class="m-icon glyphicon" 
+						ng-class="{true:'glyphicon-chevron-down',false:'glyphicon-chevron-right'}[$index==0]"
+						ng-click="openMenu()"></i>
 				</a>
-				<ul ng-if="m.children!=null" ng-include="'menusTemplate'" ng-init="menus=m.children;_index=_index+1;"></ul>
+				<ul ng-if="m.children!=null" ng-show="$index==0" ng-include="'menusTemplate'" ng-init="menus=m.children;_index=_index+1;"></ul>
 			</li>
 		</script>
 	</body>

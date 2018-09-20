@@ -43,7 +43,7 @@ input { outline: none; }
 }
 
 .cc-menu .m-list {
-	padding-left: 20px;
+	padding:0 20px;
 }
 
 .cc-menu .m-list .m-items {
@@ -52,6 +52,12 @@ input { outline: none; }
 	margin-top: 5px;
 	margin-bottom: 5px;
 	font-size: 1.6rem;
+	position: relative;
+}
+
+.cc-menu .m-list .m-items .m-icon {
+	position: absolute;
+	right: 0;
 }
 
 .cc-menu .m-list .item-0 {
