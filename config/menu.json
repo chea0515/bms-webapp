@@ -1,7 +1,7 @@
 {"root" : [
     {
     	"title" : "日常生活",
-    	"icon" : "",
+    	"icon" : "glyphicon-shopping-cart",
     	"children" : [
     		{
     			"title" : "日常生活",
@@ -12,18 +12,24 @@
     },
     {
     	"title" : "个人博客",
-    	"icon" : "",
+    	"icon" : "glyphicon-edit",
     	"children" : [
     		{
     			"title" : "文章",
     			"icon" : "",
-    			"url" : "bbb"
+    			"url" : "bbb",
+    			"children" : [
+    			    {
+    			    	"title" : "列表",
+    			        "url" : ""
+    			    }
+    			]
     		}
     	]
     },
     {
     	"title" : "系统设置",
-    	"icon" : "",
+    	"icon" : "glyphicon-cog",
     	"url" : "page.myinfo"
     }
 ]}

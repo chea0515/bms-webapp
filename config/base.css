@@ -1,6 +1,11 @@
 @charset "utf-8";
-body, html {
+body {
+    background-color: #f2f2f2 !important;
 }
+
+ul {padding:0;}
+li {list-style-type: none;}
+input { outline: none; }
 
 .cc-top {
 	position: absolute;
@@ -8,8 +13,14 @@ body, html {
 	left: 0;
 	height: 60px;
 	width: 100%;
-	background-color: #555;
-	z-index: 1001;
+	background-color: #FFF;
+	line-height: 60px;
+	padding: 0 20px;
+	z-index: 999;
+}
+
+.cc-top .t-list {
+	margin-left: 220px;
 }
 
 .cc-menu {
@@ -23,14 +34,28 @@ body, html {
 	z-index: 1000;
 }
 
+.cc-menu .m-logo {
+	height: 60px;
+}
+
 .cc-menu .m-list {
-	margin-top: 80px;
+}
+
+.cc-menu .m-list .m-items {
+	padding: 5px 0;
 }
 
 .cc-main {
 	position: absolute;
 	top: 60px;
-	left: 230px;
-	width: calc(100% - 230px);
+	left: 220px;
+	width: calc(100% - 220px);
 	height: calc(100% - 60px);
+	padding: 20px;
+}
+
+.cc-main .m-list {
+	background-color: #FFF;
+	height: 100%;
+	padding: 20px;
 }
