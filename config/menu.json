@@ -26,7 +26,7 @@
     			"children" : [
     			    {
     			    	"title" : "列表",
-    			        "url" : ""
+    			        "url" : "page.articlelist"
     			    },
     			    {
     			    	"title" : "分类",

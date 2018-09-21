@@ -81,6 +81,17 @@ define(['app'], function(app) {
 			'resolve'     : {
 				'deps' : app.loadDepsSrc(basePath + 'pages/system/myinfoController.js')
 			}
-		});
+		})
+		//article list
+		.state('page.articlelist', {
+			'url'         : '/article/list',
+			'templateUrl' : basePath + 'pages/article/articlelist.html',
+			'controller'  : 'articleListController',
+			'resolve'     : {
+				'deps' : app.loadDepsSrc(basePath + 'pages/article/articleListController.js')
+			}
+		});;
+		
+		
 	}]);
 });

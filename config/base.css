@@ -3,9 +3,7 @@ body {
     background-color: #f2f2f2 !important;
 }
 
-a, a:hover, a:focus, a:active {
-	text-decoration: none !important;
-}
+a, a:hover, a:focus, a:active {text-decoration: none !important;}
 
 ul {padding:0;}
 li {list-style-type: none;}
@@ -23,9 +21,7 @@ input { outline: none; }
 	z-index: 999;
 }
 
-.cc-top .t-list {
-	margin-left: 220px;
-}
+.cc-top .t-list {margin-left: 220px;}
 
 .cc-menu {
 	position: absolute;
@@ -33,20 +29,19 @@ input { outline: none; }
 	left: 0;
 	width: 220px;
 	height: 100%;
-	background-color: #444;
+	background-color: #555;
 	color: #FFF;
 	z-index: 1000;
+	overflow-y: scroll;
 }
 
-.cc-menu .m-logo {
-	height: 60px;
-}
+.cc-menu .m-logo {height: 60px;}
 
-.cc-menu .m-list {
-	padding:0 20px;
-}
+.cc-menu .m-list {}
 
-.cc-menu .m-list .m-items {
+.cc-menu .m-list .m-items {padding:10px 0;}
+
+.cc-menu .m-list .m-items > a {
 	display: block;
 	color: #FFF;
 	margin-top: 5px;
@@ -55,17 +50,17 @@ input { outline: none; }
 	position: relative;
 }
 
-.cc-menu .m-list .m-items .m-icon {
+.cc-menu .m-list .m-items > ul {display: none;}
+.cc-menu .m-list .m-on {background-color: #393939;}
+.cc-menu .m-list .m-on > ul {display: block;}
+
+.cc-menu .m-list .m-items > a .m-icon {
 	position: absolute;
-	right: 0;
+	right: 10px;
 }
 
-.cc-menu .m-list .item-0 {
-}
-
-.cc-menu .m-list .item-1 {
-	padding-left: 20px;
-}
+.cc-menu .m-list .item-0 {}
+.cc-menu .m-list .item-1 {padding-left: 20px;}
 
 .cc-main {
 	position: absolute;
@@ -80,4 +75,5 @@ input { outline: none; }
 	background-color: #FFF;
 	height: 100%;
 	padding: 20px;
+	overflow-y: scroll;
 }
