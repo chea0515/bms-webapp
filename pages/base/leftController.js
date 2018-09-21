@@ -2,7 +2,7 @@ define(['app'], function(app) {
 	app.register.controller('leftController',['$scope', '$state', '$timeout',
 		function(scope, state, timeout) {
 		
-		scope.menuStatus = 'open';
+		scope.menuState = true;
 		
 		// menu
 		scope.menus = null;
@@ -20,8 +20,9 @@ define(['app'], function(app) {
 			}
 		}
 		
-		scope.openMenu = function() {
-			alert()
+		scope.openMenu = function(menuState) {
+			alert(menuState);
+			scope.menuState = !scope.menuState;
 		};
 		
 	}]);

@@ -7,19 +7,19 @@
 	<body>
 		<div class="m-logo"></div>
 		<div class="m-list">
-			<ul ng-include="'menusTemplate'" ng-init="_index=0;"></ul>
+			<ul ng-include="'menusTemplate'" ng-init="_m_index=0;"></ul>
 		</div>
 		
 		<script id="menusTemplate" type="text/ng-template">
 			<li ng-repeat="m in menus">
-				<a href="javascript:;" ng-click="menuGo(m.url)" class="m-items" style="padding-left: {{_index*20}}px;">
+				<a href="javascript:;" ng-click="menuGo(m.url)" class="m-items" style="padding-left: {{_m_index*20}}px;">
 					<i class="glyphicon" ng-class="m.icon"></i>
 					{{m.title}}
 					<i ng-if="m.children!=null" class="m-icon glyphicon" 
 						ng-class="{true:'glyphicon-chevron-down',false:'glyphicon-chevron-right'}[$index==0]"
-						ng-click="openMenu()"></i>
+						ng-click="openMenu(menuState)"></i>
 				</a>
-				<ul ng-if="m.children!=null" ng-show="$index==0" ng-include="'menusTemplate'" ng-init="menus=m.children;_index=_index+1;"></ul>
+				<ul ng-if="m.children!=null" ng-show="$index==0" ng-include="'menusTemplate'" ng-init="menus=m.children;_m_index=_m_index+1;"></ul>
 			</li>
 		</script>
 	</body>
