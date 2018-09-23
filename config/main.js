@@ -9,7 +9,7 @@ require.config({
 		'jquery'     : '../libs/jquery-3.3.1.min',
 		
 		'angular'    : '../libs/angularjs/angular.min',
-		'angularDirective' : 'directive',
+		'directive' : 'directive',
 		
 		'bootstrap'  : '../libs/bootstrap/js/bootstrap.min',
 		
@@ -43,7 +43,7 @@ require.config({
 		
 		'router' : ['uiRouter'],
 		
-		'angularDirective' : ['router'],
+		'directive' : ['router'],
 		
 		'layer'    : ['css!../libs/layui/layer/theme/default/layer.css'],
 		'laydate'  : ['css!../libs/layui/laydate/theme/default/laydate.css'],

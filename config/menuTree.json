@@ -1,47 +1,58 @@
 {"root" : [
     {
+    	"id" : "0",
     	"title" : "日常",
     	"icon" : "glyphicon-shopping-cart",
     	"children" : [
     		{
+    			"id" : "0_0",
     			"title" : "笔记",
     			"url" : ""
     		},
     		{
+    			"id" : "0_1",
     			"title" : "提醒",
     			"url" : ""
     		},
     		{
+    			"id" : "0_2",
     			"title" : "理财",
     			"url" : ""
     		}
     	]
     },
     {
+    	"id" : "1",
     	"title" : "个人博客",
     	"icon" : "glyphicon-edit",
     	"children" : [
     		{
+    			"id" : "1_0",
     			"title" : "文章",
     			"children" : [
     			    {
+    			    	"id" : "1_0_0",
     			    	"title" : "列表",
     			        "url" : "page.articlelist"
     			    },
     			    {
+    			    	"id" : "1_0_1",
     			    	"title" : "分类",
     			        "url" : ""
     			    },
     			    {
+    			    	"id" : "1_0_2",
     			    	"title" : "标签",
     			        "url" : ""
     			    }
     			]
     		},
     		{
+    			"id" : "1_1",
     			"title" : "相册",
     			"children" : [
     			    {
+    			    	"id" : "1_1_0",
     			    	"title" : "列表",
     			        "url" : ""
     			    }
@@ -50,14 +61,17 @@
     	]
     },
     {
+    	"id" : "2",
     	"title" : "系统",
     	"icon" : "glyphicon-cog",
     	"children" : [
     		{
+    			"id" : "2_0",
     			"title" : "登录密码",
     			"url" : "page.myinfo"
     		},
     		{
+    			"id" : "2_1",
     			"title" : "缓存",
     			"url" : ""
     		}

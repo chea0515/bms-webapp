@@ -1,16 +1,46 @@
 define(['app'], function(app) {
 	app.register.controller('leftController',['$scope', '$state', '$timeout',
-		function(scope, state, timeout) {
+		function(scope, routeState, timeout) {
 		
-		// menu init
-		scope.menuLists = sessionStorage.getItem('menuLists')?JSON.parse(sessionStorage.getItem('menuLists')):null;
+		// 菜单加载进度记录num
+		scope.menuLoadProgress = 0;
+		 // 菜单id前缀
+		scope.menuIdPrefix = '_left_m_id_';
+		// 菜单初始化配置
+		const menuInitOptions = {
+			// 状态icon(打开或者关闭图标)
+			'icon': ['glyphicon-chevron-down', 'glyphicon-chevron-right'],
+			// 加载页面
+			'url': 'page.articlelist',
+			// 菜单id
+			'id': '1_0_0',
+			// 菜单列表长度
+			'size': 14,
+			// 菜单列表
+			'list': null
+		};
+		// 加载已存放在sessionStorage里的菜单列表
+		const menuDataInfo = sessionStorage.getItem('menuDataInfo') ?
+			JSON.parse(sessionStorage.getItem('menuDataInfo')) : 
+			{'size': menuInitOptions.size, 'list': menuInitOptions.list};
+		scope.menuLists = menuDataInfo.list ? menuDataInfo.list : null;
+		// sessionStorage 清除
+	    //sessionStorage.clear();
+	    
+	    // 加载菜单列表信息
 		scope.initMenus = function() {
 			if (!scope.menuLists) {
-				$.ccGet(basePath + 'config/menu.json', function(d) {
+				$.ccGet(basePath + 'config/menuList.json', function(d) {
 					if(d && d.root) {
+						let dTree = $.convertTree(d.root);
+						let _menuDataInfo = {
+							'size': d.root.length,
+							'list': dTree
+						};
+						sessionStorage.setItem('menuDataInfo', JSON.stringify(_menuDataInfo));
+						
 						timeout(function() {
-							scope.menuLists = d.root;
-							sessionStorage.setItem('menuLists', JSON.stringify(d.root));
+							scope.menuLists = dTree;
 						}, 100);
 					}
 				});
@@ -18,83 +48,92 @@ define(['app'], function(app) {
 		};
 		scope.initMenus();
 		
-		scope.menuLoadFinish = function() {
-			alert()
-		}
-		
-		const menuStatus = ['glyphicon-chevron-down', 'glyphicon-chevron-right'];
-		scope.menuIdPrefix = '_left_m_id_'; // 菜单id前缀
-		//sessionStorage.clear();
-		
-		scope.$watch('menuLoadProgress', function(newValue, oldValue) {
-			console.log('newValue-->' + newValue);
-		});
-		
 		/*
 		 * init menu status
 		 * type 1: switch, 2: init
 		 */
-		/*
-		const menuSelectedItem =
-			sessionStorage.getItem('menuSelectedItem')?JSON.parse(sessionStorage.getItem('menuSelectedItem')) : {'id': '', 'styles': 'm-sel-item' };
+		scope.menuSelectedItem = sessionStorage.getItem('menuSelectedItem')?
+			JSON.parse(sessionStorage.getItem('menuSelectedItem')) : {'id': '', 'styles': 'm-sel-item' };
 		scope.initMenuStatus = function(type, menuId) {
-			let _menuId = menuSelectedItem.id;
+			let pillCss = function(_menuId) {
+				$('#' + _menuId).addClass(scope.menuSelectedItem.styles);
+				scope.menuSelectedItem.id = _menuId;
+				sessionStorage.setItem('menuSelectedItem', JSON.stringify(scope.menuSelectedItem));
+			};
+			let _menuId = scope.menuSelectedItem.id;
+			let obj = _menuId ? $('#' + _menuId) : null;
+			if (!obj) {
+				obj = $('#' + scope.menuIdPrefix + menuInitOptions.id);
+				pillCss(scope.menuIdPrefix + menuInitOptions.id);
+				scope.menuGo('page.articlelist', menuInitOptions.id);
+			}
+			
 			switch (type) {
 				case 1:
-					if (_menuId) {
-						$('#' + _menuId).removeClass(menuSelectedItem.styles);
-					}
-					
-					$('#' + menuId).addClass(menuSelectedItem.styles);
-					menuSelectedItem.id = menuId;
-					sessionStorage.setItem('menuSelectedItem', JSON.stringify(menuSelectedItem));
+					obj.removeClass(scope.menuSelectedItem.styles);
+					pillCss(menuId);
 					break;
 				case 2:
-					if (_menuId) {
-						$('#' + _menuId).addClass(menuSelectedItem.styles);
-						let parentLiIds = _menuId.substring(scope.menuIdPrefix.length);
-						parentLiIds = scope.menuIdPrefix + parentLiIds.substring(0, parentLiIds.indexOf('_'));
-						let parentLis = $('#_left_m_id_0_0');//$('li[id^='+ parentLiIds + ']');
-						timeout(function() {
-							let parentLis = $('#_left_m_id_0_0');//$('li[id^='+ parentLiIds + ']');
-							console.log(parentLis);
-						}, 200);
-					}
+					obj.addClass(scope.menuSelectedItem.styles);
+					let parentLis = obj.parents('li');
+					$(parentLis).each(function(i, d) {
+						if (!$(d).hasClass('m-on')) {
+							$(d).addClass('m-on')
+							    .find('>a .m-icon')
+							    .removeClass(menuInitOptions.icon[1])
+							    .addClass(menuInitOptions.icon[0]);
+						}
+					});
 					break;
 				default:
 					break;
 			}
 		};
-		*/
 		
 		// init menu status
-		//scope.initMenuStatus(2);
-		
-		scope.menuGo = function(eve, url, menuId) {
-			if(url) {
-				state.go(url);
-				//scope.initMenuStatus(1, menuId);
+		scope.menuLoadFinish = function(mLen) {
+			scope.menuLoadProgress += mLen;
+			if (menuDataInfo.size == scope.menuLoadProgress) {
+				scope.initMenuStatus(2);
 			}
-			
-			scope.openMenu(eve, menuId);
 		}
 		
-		scope.openMenu = function(eve, menuId) {
-			let li = $('#' + menuId);
-			if (li.hasClass('m-on')) {
-				li.removeClass('m-on')
-				  .find('>a .m-icon').removeClass(menuStatus[0]).addClass(menuStatus[1]);
-			} else {
-				li.addClass('m-on')
-				  .find('>a .m-icon').removeClass(menuStatus[1]).addClass(menuStatus[0]);
+		// 页面跳转
+		scope.menuGo = function(url, menuId) {
+			menuId = scope.menuIdPrefix + menuId;
+			if(url) {
+				routeState.go(url);
+				scope.initMenuStatus(1, menuId);
 			}
 			
-			li.siblings().each(function(i, d) {
-				if ($(d).hasClass('m-on')) {
-					$(d).removeClass('m-on')
-					    .find('>a .m-icon').removeClass(menuStatus[0]).addClass(menuStatus[1]);
+			scope.openMenu(menuId);
+		}
+		
+		// 更改列表状态
+		scope.openMenu = function( menuId) {
+			let li = $('#' + menuId);
+			if (li) {
+				if (li.hasClass('m-on')) {
+					li.removeClass('m-on')
+					  .find('>a .m-icon')
+					  .removeClass(menuInitOptions.icon[0])
+					  .addClass(menuInitOptions.icon[1]);
+				} else {
+					li.addClass('m-on')
+					  .find('>a .m-icon')
+					  .removeClass(menuInitOptions.icon[1])
+					  .addClass(menuInitOptions.icon[0]);
 				}
-			});
+				
+				li.siblings().each(function(i, d) {
+					if ($(d).hasClass('m-on')) {
+						$(d).removeClass('m-on')
+						    .find('>a .m-icon')
+						    .removeClass(menuInitOptions.icon[0])
+						    .addClass(menuInitOptions.icon[1]);
+					}
+				});
+			}
 		};
 	
 	}]);

@@ -50,7 +50,7 @@ define(['app'], function(app) {
 					'templateUrl' : basePath + 'pages/base/left.html',
 					'controller'  : 'leftController',
 					'resolve'     : {
-						'deps' : app.loadDepsSrc(basePath + 'pages/base/leftController.js')
+						'deps' : app.loadDepsSrc(['directive', basePath + 'pages/base/leftController.js'])
 					}
 				},
 				

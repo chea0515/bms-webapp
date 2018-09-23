@@ -29,7 +29,7 @@ input { outline: none; }
 	left: 0;
 	width: 220px;
 	height: 100%;
-	background-color: #555;
+	background-color: #333;
 	color: #FFF;
 	z-index: 1000;
 	overflow-y: scroll;
@@ -51,16 +51,19 @@ input { outline: none; }
 }
 
 .cc-menu .m-list .m-items > ul {display: none;}
-.cc-menu .m-list .m-on {background-color: #393939;}
+.cc-menu .m-list .m-on {background-color: #151515;}
 .cc-menu .m-list .m-on > ul {display: block;}
 
 .cc-menu .m-list .m-items > a .m-icon {
 	position: absolute;
 	right: 10px;
+	font-size: 1.1rem;
 }
 
-.cc-menu .m-list .item-0 {}
-.cc-menu .m-list .item-1 {padding-left: 20px;}
+.cc-menu .m-list .m-sel-item {
+	background-color: #013a4b;
+    border-left: 4px solid #00b1e6;
+}
 
 .cc-main {
 	position: absolute;

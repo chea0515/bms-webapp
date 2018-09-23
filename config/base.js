@@ -95,6 +95,60 @@ jQuery.extend({
 		}
 		
 		this.ccAjax(options);
+	},
+	
+	/**
+	 * convert list to tree menu.
+	 * @param {Object} rows
+	 */
+	convertTree: function(rows) {
+		let hasLeaf = function(rows, pid) {
+			for(let i=0; i<rows.length; i++){
+				if (rows[i].id == pid) return true;
+			}
+			
+			return false;
+		};
+		
+		let nodes = [];
+		rows.forEach(row => {
+			if (!hasLeaf(rows, row.pid)) {
+				nodes.push({
+					id: row.id,
+					title: row.title,
+					url: row.url || "",
+					icon: row.icon || ""
+				});
+			}
+		});
+		
+		let toDo = [];
+		nodes.forEach(node => {
+			toDo.push(node);
+		});
+		
+		while(toDo.length) {
+			let node = toDo.shift();
+			rows.forEach(row => {
+				if (row.pid == node.id) {
+					let child = {
+						id: row.id,
+						title: row.title,
+						url: row.url || "",
+						icon: row.icon || ""
+					};
+					
+					if (node.children) {
+						node.children.push(child);
+					} else {
+						node.children = [child];
+					}
+					toDo.push(child);
+				}
+			});
+		}
+		
+		return nodes;
 	}
 	
 });
