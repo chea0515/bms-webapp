@@ -4,21 +4,10 @@ define(['app'], function(app) {
 		
 		// 菜单加载进度记录num
 		scope.menuLoadProgress = 0;
-		 // 菜单id前缀
-		scope.menuIdPrefix = '_left_m_id_';
 		// 菜单初始化配置
-		const menuInitOptions = {
-			// 状态icon(打开或者关闭图标)
-			'icon': ['glyphicon-chevron-down', 'glyphicon-chevron-right'],
-			// 加载页面
-			'url': 'page.articlelist',
-			// 菜单id
-			'id': '1_0_0',
-			// 菜单列表长度
-			'size': 14,
-			// 菜单列表
-			'list': null
-		};
+		const menuInitOptions = ccOptions.menuInitConfig;
+		 // 菜单id前缀
+		scope.menuIdPrefix = menuInitOptions.idPrefix;
 		// 加载已存放在sessionStorage里的菜单列表
 		const menuDataInfo = sessionStorage.getItem('menuDataInfo') ?
 			JSON.parse(sessionStorage.getItem('menuDataInfo')) : 

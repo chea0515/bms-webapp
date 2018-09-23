@@ -32,12 +32,16 @@ input { outline: none; }
 	background-color: #333;
 	color: #FFF;
 	z-index: 1000;
-	overflow-y: scroll;
+	overflow: hidden;
 }
 
 .cc-menu .m-logo {height: 60px;}
 
-.cc-menu .m-list {}
+.cc-menu .m-list {
+	height: calc(100% - 60px);
+    overflow-y: scroll;
+    width: 240px;
+}
 
 .cc-menu .m-list .m-items {padding:10px 0;}
 
@@ -57,7 +61,7 @@ input { outline: none; }
 .cc-menu .m-list .m-items > a .m-icon {
 	position: absolute;
 	right: 10px;
-	font-size: 1.1rem;
+	font-size: 1rem;
 }
 
 .cc-menu .m-list .m-sel-item {
@@ -78,5 +82,6 @@ input { outline: none; }
 	background-color: #FFF;
 	height: 100%;
 	padding: 20px;
+	margin-right: -20px;
 	overflow-y: scroll;
 }

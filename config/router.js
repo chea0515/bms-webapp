@@ -31,67 +31,32 @@ define(['app'], function(app) {
 		
 		$urlRouterProvider.when("", '/page/home').when("/page", '/page/home');
 		
-		$stateProvider
-		.state({
-			'name'  : 'page',
-			'url'   : '/page',
-			'views' : {
-				'top' : {
-					'url'         : '/top',
-					'templateUrl' : basePath + 'pages/base/top.html',
-					'controller'  : 'topController',
-					'resolve'     : {
-						'deps' : app.loadDepsSrc(basePath + 'pages/base/topController.js')
-					}
-				},
-				
-				'left' : {
-					'url'         : '/left',
-					'templateUrl' : basePath + 'pages/base/left.html',
-					'controller'  : 'leftController',
-					'resolve'     : {
-						'deps' : app.loadDepsSrc(['directive', basePath + 'pages/base/leftController.js'])
-					}
-				},
-				
-				'main' : {
-					'url'         : '/main',
-					'templateUrl' : basePath + 'pages/base/main.html',
-					'controller'  : 'mainController',
-					'resolve'     : {
-						'deps' : app.loadDepsSrc(basePath + 'pages/base/mainController.js')
+		// 初始化配置
+		(ccOptions.routerConfig).forEach(rt => {
+			if (rt.views) {
+				for (let key0 in rt.views) {
+					for (let key1 in rt.views[key0]) {
+						if (key1 == 'relyOn') {
+							rt.views[key0].resolve = {};
+							rt.views[key0].resolve.deps = 
+								app.loadDepsSrc(rt.views[key0].relyOn);
+							delete rt.views[key0].relyOn;
+						}
 					}
 				}
+				$stateProvider.state(rt);
+				
+			} else {
+				for (let key in rt.options) {
+					if (key == 'relyOn') {
+						rt.options.resolve = {};
+						rt.options.resolve.deps = 
+							app.loadDepsSrc(rt.options.relyOn);
+						delete rt.options.relyOn;
+					}
+				}
+				$stateProvider.state(rt.uiSref, rt.options);
 			}
-		})
-		//
-		.state('page.home', {
-			'url'         : '/home',
-			'templateUrl' : basePath + 'pages/home/home.html',
-			'controller'  : 'homeController',
-			'resolve'     : {
-				'deps' : app.loadDepsSrc(basePath + 'pages/home/homeController.js')
-			}
-		})
-		//
-		.state('page.myinfo', {
-			'url'         : '/system/myinfo',
-			'templateUrl' : basePath + 'pages/system/myinfo.html',
-			'controller'  : 'myinfoController',
-			'resolve'     : {
-				'deps' : app.loadDepsSrc(basePath + 'pages/system/myinfoController.js')
-			}
-		})
-		//article list
-		.state('page.articlelist', {
-			'url'         : '/article/list',
-			'templateUrl' : basePath + 'pages/article/articlelist.html',
-			'controller'  : 'articleListController',
-			'resolve'     : {
-				'deps' : app.loadDepsSrc(basePath + 'pages/article/articleListController.js')
-			}
-		});;
-		
-		
+		});
 	}]);
 });
