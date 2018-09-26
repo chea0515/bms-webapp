@@ -23,10 +23,12 @@ jQuery.extend({
 		};
 		
 		let _options = {
-			'type': options.type || 'get',
+			'type': options.type || 'GET',
 			'url': options.url || "",
 			'data': options.data || {},
 			'sync': options.sync || true,
+			'contentType': options.contentType || 'application/x-www-form-urlencoded',
+			'timeout': options.timeout || 3000,
 			'success': function(d, s) {
 				_success(d, s);
 			},
@@ -54,6 +56,7 @@ jQuery.extend({
 			    options.error = args[1];
 			break;
 			case 3:
+				options.data = args[1];
 			    options.success = args[2];
 			    options.error = args[2];
 			break;
@@ -74,6 +77,7 @@ jQuery.extend({
 		let args = arguments;
 		let options = {
 			'type': 'POST',
+			'contentType' : 'application/json',
 			'url': args[0],
 			'data': null,
 			'success': null,
@@ -85,6 +89,7 @@ jQuery.extend({
 			    options.error = args[1];
 			break;
 			case 3:
+				options.data = args[1];
 			    options.success = args[2];
 			    options.error = args[2];
 			break;

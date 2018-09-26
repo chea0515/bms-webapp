@@ -9,6 +9,13 @@ const basePath = 'http://127.0.0.1:8020/bms-webapp/';
 const libsPath = basePath + 'libs/';
 
 /**
+ * request data path
+ */
+// http://192.168.91.128:9000/
+// http://192.168.5.247:9002/
+const requestPath = 'http://192.168.5.247:9002/';
+
+/**
  * common options
  */
 const ccOptions = {
@@ -38,7 +45,11 @@ const ccOptions = {
 			'router'     : 'router',
 			
 			'layer'      : '../libs/layui/layer/layer',
-			'laydate'    : '../libs/layui/laydate/laydate'
+			'laydate'    : '../libs/layui/laydate/laydate',
+			
+			'dataTables' : '../libs/dataTables/media/js/jquery.dataTables.min',
+			
+			'kindEditor' : '../libs/kindeditor/kindeditor-all-min'
 			
 		},
 		
@@ -51,13 +62,13 @@ const ccOptions = {
 		'shim' : {
 			
 			'angular'  : {
-				exports : 'angular'
+				'exports' : 'angular'
 			},
 			
 			'bootstrap' : ['css!../libs/bootstrap/css/bootstrap.min.css'],
 			
 			'uiRouter' : {
-				deps  : ['angular']
+				'deps'  : ['angular']
 			},
 			
 			'router' : ['uiRouter'],
@@ -66,6 +77,8 @@ const ccOptions = {
 			
 			'layer'    : ['css!../libs/layui/layer/theme/default/layer.css'],
 			'laydate'  : ['css!../libs/layui/laydate/theme/default/laydate.css'],
+			
+			'dataTables' : ['css!../libs/dataTables/media/css/jquery.dataTables.min.css'],
 			
 			'base'     : ['jquery', 'layer', 'laydate', 'bootstrap', 'css!base.css'],
 			
@@ -121,14 +134,24 @@ const ccOptions = {
 				'relyOn'     : [basePath + 'pages/system/myinfoController.js']
 			}
 		},
-		// articlelist
+		// article list
 		{
 			'uiSref' : 'page.articlelist',
 			'options': {
 				'url'         : '/article/list',
 				'templateUrl' : basePath + 'pages/article/articlelist.html',
 				'controller'  : 'articleListController',
-				'relyOn'     : [basePath + 'pages/article/articleListController.js']
+				'relyOn'     : ['dataTables', basePath + 'pages/article/articleListController.js']
+			}
+		},
+		//article edit
+		{
+			'uiSref' : 'page.articleedit',
+			'options': {
+				'url'         : '/article/edit',
+				'templateUrl' : basePath + 'pages/article/articleedit.html',
+				'controller'  : 'articleEditController',
+				'relyOn'     : ['kindEditor', basePath + 'pages/article/articleEditController.js']
 			}
 		}
 	],
